@@ -1,0 +1,17 @@
+# Relaxed yamllint ruleset for the GitHub Actions workflows.
+# Keeps the useful structural checks while silencing the false positives
+# that the standard config raises on Actions files.
+extends: default
+
+rules:
+  # GitHub uses `on:` as a mapping key; yamllint reads bare `on` as a
+  # truthy value and complains. Allow it.
+  truthy:
+    allowed-values: ['true', 'false']
+    check-keys: false
+  # Workflow lines (action refs, run commands) run long; do not police width.
+  line-length: disable
+  # Actions files commonly start without an explicit `---` marker.
+  document-start: disable
+  comments:
+    min-spaces-from-content: 1

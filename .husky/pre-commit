@@ -1,0 +1,2 @@
+npx lint-staged
+npx pa11y-ci --config config/pa11y.config.json

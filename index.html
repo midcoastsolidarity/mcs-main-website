@@ -1,0 +1,748 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <title>Midcoast Solidarity</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.webp" />
+    <meta
+      name="description"
+      content="Building socialist parallel power in Midcoast Maine"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; font-src 'self' data:;"
+    />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      /* 22vh keeps anchored sections clear of the sticky header on scroll. */
+      html {
+        scroll-padding-top: 22vh;
+      }
+
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+      }
+
+      /* Per-tag font sizes. */
+      h1 {
+        font-size: 2.5em;
+      }
+
+      h2 {
+        font-size: 2.25em;
+      }
+
+      h3 {
+        font-size: 2em;
+        text-decoration: underline;
+      }
+
+      h4 {
+        font-size: 1.75em;
+      }
+
+      p {
+        font-size: 1.5em;
+      }
+
+      /* Sticky so the header stays put on scroll; box-shadow separates it from content. */
+      header {
+        padding: 0 10px;
+        text-align: left;
+        background: white;
+        color: black;
+        display: flex;
+        flex-flow: row wrap;
+        place-content: stretch space-around;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        box-shadow: 5px 5px 9px 1px rgb(0 0 0 / 52%);
+        min-height: 20vh;
+        max-height: 34vh;
+      }
+
+      .heading {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 300%;
+        max-height: 200px;
+        text-align: center;
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: space-around;
+      }
+
+      .navbar a {
+        color: black;
+        padding: 1em;
+        text-decoration: none;
+        text-align: center;
+      }
+
+      /* Invert colors on hover for a clear affordance. */
+      .navbar a:hover {
+        background-color: #014f3f;
+        color: white;
+        border-radius: 5px;
+      }
+
+      .navbar-button {
+        padding: 0.75em 1px;
+        background-color: lightgrey;
+        border-radius: 0.4em;
+        margin: 2px;
+        height: 2.5em;
+        max-width: 18vw;
+        font-size: 2em;
+      }
+
+      .landing {
+        padding: 2em;
+        margin: 2em;
+        background: #014f3f;
+        color: white;
+        display: flex;
+        align-items: center;
+        box-shadow: 10px 10px 14px 1px rgb(0 0 0 / 52%);
+      }
+
+      .row {
+        display: flex;
+      }
+
+      .column {
+        flex: 50%;
+        padding: 1em;
+      }
+
+      /* 10vw side margins keep a readable measure on wide screens. */
+      .main {
+        padding: calc(25px + 2vw) 2vw;
+        margin-inline: 10vw;
+        width: auto;
+        height: 80%;
+        background-color: white;
+      }
+
+      /* Centers block images. Throughout the page, images carry inline
+         max-width/max-height in vw so they scale with the viewport and never
+         overflow their column. */
+
+      .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .bookshelf {
+        display: inline-flex;
+      }
+
+      .box {
+        height: 28em;
+        width: 15em;
+        background-color: whitesmoke;
+        border-radius: 1em;
+        padding: 0.5em;
+        display: inline-grid;
+        box-shadow: 0.6em 0.6em 0.6em 0.6em rgb(0 0 0 / 52%);
+      }
+
+      .cover {
+        max-height: 15em;
+        max-width: 10em;
+        margin: auto;
+      }
+
+      .title {
+        font-weight: bold;
+        font-family: Optima, Arial, Helvetica, sans-serif;
+        font-style: italic;
+        font-size: 1em;
+      }
+
+      .author {
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        text-align: left;
+        font-size: 1em;
+      }
+
+      footer {
+        padding: 10px 40px;
+        background: #014f3f;
+        color: white;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      /* Phone overrides: stack to a single full-width column and shrink type. */
+      @media only screen and (width <= 620px) {
+        header,
+        .landing,
+        .navbar,
+        .row {
+          width: 100%;
+          margin: 0;
+          padding: 2px;
+        }
+
+        .navbar-button {
+          font-size: 1.25em;
+        }
+
+        .navbar a {
+          margin: 1px;
+          padding: 0.5em 0.25em;
+        }
+
+        body {
+          font-size: small;
+        }
+
+        .main {
+          width: 100%;
+          margin: 0;
+          padding: 5px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div style="max-height: 200px; text-align: right">
+        <img
+          src="images/logo.webp"
+          alt="The midcoastsolidarity logo which is the Maine pine tree and star within the solidarity fist."
+          width="216"
+          height="216"
+          style="max-width: 11vh; max-height: 11vh"
+        />
+      </div>
+      <div class="heading" style="display: flex; align-items: center">
+        Midcoast Solidarity
+      </div>
+
+      <div
+        class="navbar"
+        style="display: flex; flex-wrap: wrap; align-items: flex-end"
+      >
+        <div class="navbar-button">
+          <a href="#About">About</a>
+        </div>
+        <div class="navbar-button">
+          <a href="#Contact">Contact</a>
+        </div>
+        <div class="navbar-button">
+          <a href="#Activities">Activities</a>
+        </div>
+        <div class="navbar-button">
+          <a href="#Bookclub">Bookclub</a>
+        </div>
+        <div class="navbar-button">
+          <a href="#Food">Food</a>
+        </div>
+      </div>
+    </header>
+
+    <div class="landing">
+      <div class="row">
+        <div class="column">
+          <div style="display: flex; text-align: right; align-items: center">
+            <h1>
+              Midcoast Solidarity is commited to helping our communities survive
+              and thrive through our current difficulties and into the future.
+            </h1>
+          </div>
+        </div>
+        <div class="column">
+          <a
+            href="https://unsplash.com/photos/person-holding-fight-today-for-a-better-tomorrow-sign-iRAvvyWZfZY"
+            target="_blank"
+          >
+            <img
+              src="images/fight.webp"
+              alt="A cardboard sign at a climate protest with the message 'Fight Today for a Better Tomorrow'."
+              width="1000"
+              height="667"
+              style="max-width: 45vw; max-height: 30vw"
+            />
+          </a>
+          <p style="text-align: center; font-size: 1em">
+            <a
+              href="https://unsplash.com/photos/person-holding-fight-today-for-a-better-tomorrow-sign-iRAvvyWZfZY"
+              target="_blank"
+              style="color: white; text-decoration: underline; font-size: 1em"
+            >
+              Markus Spiske, Global Climate Strike (Sept 20, 2019)
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="main">
+      <div>
+        <h2>
+          Our mission is to develop socialist parallel power &amp; build
+          solidarity in Wabanaki Territory/Midcoast Maine to replace capitalist
+          systems through education, advocacy, and organization.
+        </h2>
+        <h3>News and Announcements</h3>
+        <div class="row">
+          <div class="column">
+            <img
+              src="images/logo.webp"
+              alt="The Midcoast Solidarity logo, which is composed of the Maine pine tree and star contained within a clenched solidarity fist."
+              width="327"
+              height="327"
+              style="max-width: 13vw; max-height: 13vw"
+              class="center"
+            />
+            <h4>Come to our next meeting</h4>
+            <p>
+              Midcoast Solidarity's next public meeting will be on May 25th at
+              7pm, with a social half hour starting at 6:30. Meetings are 90
+              minutes long and happen in person and online via jitsi. Masks are
+              required to attend in person and we will have air purifiers
+              running.
+            </p>
+          </div>
+          <div class="column">
+            <a href="https://midcoastfood.me" target="_blank">
+              <img
+                src="images/midcoastfood.webp"
+                alt="The Midcoast Food logo, which is a simplified illustration of a circle containing a loaf of bread, a lighthouse, a wave, and a heart alongside the website name 'MicoastFood.me'."
+                width="883"
+                height="327"
+                style="max-width: 35vw; max-height: 13vw"
+                class="center"
+              />
+            </a>
+            <h4>Food Resource Launch</h4>
+            <p>
+              <a href="https://midcoastfood.me" target="_blank"
+                >MidcoastFood.me</a
+              >
+              is a new resource intended to connect neighbors with free and
+              local food resources across Maine. Use the interactive map to find
+              food pantries, community fridges, and meal programs near you.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3 id="About">About</h3>
+        <p>
+          Midcoast Solidarity is a group of people striving to organize to build
+          a socialist future within Midcoast Maine. We define that region as
+          stretching along the coast of Penobscot Bay from the mouth of the
+          Passagassawakeag river, south to the Androscoggin river (enveloped by
+          the settlements known as Belfast and Brunswick), and inland to I95.
+        </p>
+        <!-- Floated right with an organic border-radius so the text wraps around it. -->
+        <img
+          src="images/midcoastmap.webp"
+          alt="A map depicting the geographic region of midocast Maine, which spans Brunswick, Rockland, Augusta, and Belfast"
+          width="422"
+          height="482"
+          style="
+            border-radius: 70% 15% 15%;
+            float: right;
+            margin: 0 1em;
+            padding: 0 1em;
+            max-width: 35vw;
+            max-height: 40vw;
+          "
+        />
+        <h4>Our Mission</h4>
+        <p>
+          Our mission is to develop socialist parallel power in Midcoast
+          Maine/Wabanaki Territory communities to replace capitalist systems
+          through education, advocacy, and organization.
+        </p>
+        <h4>Our Values</h4>
+        <p>
+          We value life over profit. The practices and ideologies of capitalism,
+          coloniality, racism, and bigotry infringe upon the agency of
+          individuals, groups, and marginalized identities. Midcoast Solidarity
+          strives to separate our survival needs from these oppressive systems.
+        </p>
+        <h4>Solidarity</h4>
+        <p>
+          As a core principle, we agree to build solidarity with our fellow
+          Midcoast Solidarity members, local community, and other organizations
+          in our geographical area working towards liberation, because none of
+          us are free until all of us are free.
+        </p>
+        <h4>Organization</h4>
+        <p>
+          Our organization makes decisions using consent-based processes and is
+          divided into smaller groups called circles that take on specific
+          tasks.
+        </p>
+        <p>
+          Check out our
+          <a href="handbook_101525.html" target="_blank">Handbook</a>!
+        </p>
+      </div>
+
+      <div>
+        <h3 id="Contact">Contact</h3>
+        <h4>Connect on Social Media</h4>
+        <div class="row">
+          <div class="column" style="margin: auto">
+            <a
+              href="https://www.facebook.com/people/Midcoast-Solidarity/61568329265665/"
+              target="_blank"
+            >
+              <img
+                src="images/facebook.webp"
+                alt="The Facebook logo. This image is clickable and takes you to the Midcoast Solidarity Facebook page."
+                width="413"
+                height="413"
+                style="max-width: 18vw; max-height: 18vw"
+              />
+            </a>
+          </div>
+          <div class="column" style="margin: auto">
+            <a
+              href="https://www.instagram.com/midcoastsolidarity/"
+              target="_blank"
+            >
+              <img
+                src="images/instagram.webp"
+                alt="The Instagram logo. This image is clickable and takes you to the Midcoast Solidarity Instagram page."
+                width="418"
+                height="418"
+                style="max-width: 18vw; max-height: 18vw"
+              />
+            </a>
+          </div>
+          <div class="column" style="margin: auto">
+            <a href="https://github.com/midcoastsolidarity/" target="_blank">
+              <img
+                src="images/github.webp"
+                alt="The GitHub logo. This image is clickable and takes you to the Midcoast Solidarity GitHub page."
+                width="1280"
+                height="1280"
+                style="max-width: 18vw; max-height: 18vw"
+              />
+            </a>
+          </div>
+        </div>
+        <p>
+          PS: Our GitHub is also where the
+          <a
+            href="https://github.com/midcoastsolidarity/mcs_main_website/tree/main"
+            target="_blank"
+            >source code</a
+          >
+          for this website lives (and is even hosted for free via
+          <a href="https://docs.github.com/en/pages" target="_blank"
+            >GitHub Pages</a
+          >)!
+        </p>
+      </div>
+      <h4>Join our Email List or Get Involved</h4>
+      <p>
+        <a
+          href="https://form.jotform.com/midcoastsolidarity/join"
+          target="_blank"
+          >Email List and Interest Form</a
+        >
+      </p>
+      <p>
+        <a
+          href="https://form.jotform.com/midcoastsolidarity/membership"
+          target="_blank"
+          >Membership Interest Form</a
+        >
+      </p>
+
+      <div>
+        <h3 id="Activities">Activities</h3>
+        <h4>Community Meal at Perch</h4>
+        <img
+          src="images/perch.webp"
+          alt="A flyer for the Perch Cafe & Bakery community meals (also known as potlucks) held in February 2026. The location of the bakery is 11 Friendship Road, Waldoboro, Maine 04572. These meals were held between 5pm and 7pm Eastern Time."
+          width="773"
+          height="1000"
+          style="max-width: 50.2vw; max-height: 65vw"
+        />
+        <p>
+          Bring a dish to share or just yourself! If you do bring food, please
+          label it with any allergen ingredients.
+        </p>
+        <h4>Zine Night</h4>
+        <img
+          src="images/zine.webp"
+          alt="A table with some community-created zines (short for magazine) from the regular Midcoast Solidarity Zine Night events."
+          width="2048"
+          height="1536"
+          style="max-width: 70vw; max-height: 52.5vw"
+        />
+        <p>
+          The Midcoast Solidarity Bookclub is hosts a monthly zine workshop in
+          Rockland every 2nd Tuesday.<br />Materials will be provided - paper,
+          writing utensils, collage materials, and creativity! - and any
+          additional items you bring to use or share.
+        </p>
+        <h4>Community Resources and Support</h4>
+        <p>
+          Resources and Orgs that are responding and organizing around
+          protecting people from and responding to ICE activity here in Maine:
+          <br />
+        </p>
+        <ul>
+          <li>
+            <a
+              href="https://maineimmigrantrights.org/mirc-resource-hub/"
+              target="_blank"
+              style="font-size: 1.5em"
+              >Maine Immigrants' Rights Coalition - Welcome to the Maine
+              Immigrant Resource Hub &amp; Hotline</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://ilapmaine.org/know-your-rights"
+              target="_blank"
+              style="font-size: 1.5em"
+              >ILAP Maine - Know Your Rights</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.activatemaine.com/"
+              target="_blank"
+              style="font-size: 1.5em"
+              >Activate Maine</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.mainesolidarity.org/"
+              target="_blank"
+              style="font-size: 1.5em"
+              >Maine Solidarity Fund</a
+            >
+          </li>
+        </ul>
+        <p>
+          <b>Maine Breathes Easy (MEBE)</b>
+          is a diverse, unranked group of community members valuing and
+          practicing precautions against the dangerous effects of Covid
+          infection and other serious illnesses. They offer free support,
+          connection, information, testing, personal protective equipment and
+          more through consensus-driven activities in a respectful,
+          judgement-free environment.
+          <br />To learn more or to request free masks check out their website:
+          <a href="https://mainebreatheseasy.org/" target="_blank"
+            >mainebreatheseasy.org</a
+          >
+        </p>
+
+        <!-- Seasonal: uncomment during the cold months.
+        <p>
+          The
+          <b>Rockland Emergency Warming Center</b>
+          is open on most cold nights. Located at Flanagan Community Center (61
+          Limerock St). Keep an eye on local Facebook pages to announce openings
+          or email
+          <a href="mailto:ewcrockland@gmail.com" target="_blank"
+            >ewcrockland@gmail.com</a
+          >
+          call/text Jessica at (207) 230-4258 with questions. OLD FLYER BELOW
+          for example of what to watch for open nights. Open from 7am to 7pm
+          with dinner and breakfast provided.
+        </p>
+        <img
+          src="images/warming.webp"
+          alt="A flyer for the dates in February 2026 that the Rockland Emergency Warming Center was open. The warming center is located at the Flanagan Community Center on 61 Limerock Street."
+          width="1200"
+          height="927"
+          style="max-width: 70vw; max-height: 54.1vw"
+        /> -->
+      </div>
+
+      <div>
+        <h3 id="Bookclub">Bookclub</h3>
+        <p>
+          Bookclub meets every week, alternately in person in Rockland Maine, or
+          virtually via our Signal group, from 6:30pm to 8:00pm. Get in touch if
+          you'd like to be added to the group.
+        </p>
+        <h4>Currently Reading</h4>
+        <div style="display: inline-flex">
+          <figure class="box">
+            <p class="title">State and Revolution</p>
+            <p class="author">Vladimir Ilich Lenin</p>
+            <img
+              src="images/books/state.webp"
+              alt="A book cover for Vladimir Ilich Lenin's 'State and Revolution'."
+              width="296"
+              height="445"
+              class="cover"
+            />
+          </figure>
+          <p style="flex: 1">
+            <b>Schedule</b> <br />May 6: Virtual<br />May 13: Rockland<br />May
+            20: Virtual<br />May 27: Rockland<br />June 3: Virtual<br />June 10:
+            Rockland
+          </p>
+        </div>
+      </div>
+      <div>
+        <h4>Previous Reads</h4>
+        <figure class="box">
+          <p class="title">Pedagogy of the Oppressed</p>
+          <p class="author">Paulo Freire</p>
+          <img
+            src="images/books/pedagogy.webp"
+            alt="A book cover for Paulo Freire's 'Pedagogy of the Oppressed'."
+            width="394"
+            height="584"
+            class="cover"
+          />
+        </figure>
+        <figure class="box">
+          <p class="title">
+            The Gatherings: Reimagining Indigenous-Settler Relations
+          </p>
+          <p class="author">Shirley N Hager and Mawopiyane</p>
+          <img
+            class="cover"
+            src="images/books/gatherings.webp"
+            alt="A book cover for Shirley N Hager and Mawopiyane's 'The Gatherings'."
+            width="170"
+            height="255"
+          />
+        </figure>
+        <figure class="box">
+          <p class="title">
+            Blackshirts and Reds: Rational Fascism and the Overthrow of
+            Communism
+          </p>
+          <p class="author">Michael Parenti</p>
+          <img
+            class="cover"
+            src="images/books/blackshirts.webp"
+            alt="A book cover for Michael Parenti's 'Blackshirts and Reds'."
+            width="670"
+            height="1000"
+          />
+        </figure>
+        <figure class="box">
+          <p class="title">The Dispossessed An Ambiguous Utopia</p>
+          <p class="author">Ursula K Le Guin</p>
+          <img
+            class="cover"
+            src="images/books/dispossessed.webp"
+            alt="A book cover for Ursula K Le Guin's 'The Dispossessed'."
+            width="250"
+            height="370"
+          />
+        </figure>
+        <figure class="box">
+          <p class="title">
+            Red Valkyries: Feminist Lessons from Five Revolutionary Women
+          </p>
+          <p class="author">Kristen Ghodsee</p>
+          <img
+            class="cover"
+            src="images/books/valkyries.webp"
+            alt="A book cover for Kristen Ghodsee's 'Red Valkyries'."
+            width="387"
+            height="582"
+          />
+        </figure>
+        <figure class="box">
+          <p class="title">
+            Starting Somewhere: Community Organizing for Socially Awkward People
+            Who've Had Enough
+          </p>
+          <p class="author">Roderick Douglass</p>
+          <img
+            class="cover"
+            src="images/books/starting.webp"
+            alt="A book cover for Roderick Douglass' 'Starting Somewhere'."
+            width="361"
+            height="582"
+          />
+        </figure>
+        <figure class="box">
+          <p class="title">
+            Mutual Aid: Building Solidarity During this Crisis (and the Next)
+          </p>
+          <p class="author">Dean Spade</p>
+          <img
+            class="cover"
+            src="images/books/mutual.webp"
+            alt="A book cover for Dean Spade's 'Mutual Aid'."
+            width="293"
+            height="450"
+          />
+        </figure>
+        <figure class="box">
+          <p class="title">
+            We Will Not Cancel Us: And Other Dreams of Transformative Justice
+          </p>
+          <p class="author">Adrienne Maree Brown</p>
+          <img
+            class="cover"
+            src="images/books/cancel.webp"
+            alt="A book cover for Adrienne Maree Brown's 'We Will Not Cancel Us'."
+            width="401"
+            height="582"
+          />
+        </figure>
+      </div>
+
+      <div>
+        <h3 id="Food">Food</h3>
+        <a href="https://midcoastfood.me" target="_blank">
+          <img
+            src="images/midcoastfood.webp"
+            alt="The Midcoast Food logo, which is a simplified illustration of a circle containing a loaf of bread, a lighthouse, a wave, and a heart alongside the website name 'MicoastFood.me'."
+            width="883"
+            height="327"
+            style="max-width: 80vw; max-height: 29.6vw"
+          />
+        </a>
+        <p>
+          Midcoast Solidarity has launched
+          <a href="https://midcoastfood.me" target="_blank">MidcoastFood.me</a>,
+          a new resource intended to connect neighbors with free and local food
+          resources across Maine. Use the interactive map to find food pantries,
+          community fridges, and meal programs near you.
+        </p>
+      </div>
+    </div>
+    <div>
+      <footer>
+        <p>We keep us safe</p>
+        <p>
+          <a
+            href="mailto:info@midcoastsolidarity.org"
+            style="text-decoration: none; color: white"
+            target="_blank"
+            >info@midcoastsolidarity.org</a
+          >
+        </p>
+        <p>2026</p>
+      </footer>
+    </div>
+  </body>
+</html>
