@@ -1,7 +1,7 @@
 {
   "devDependencies": {
     "husky": "^9.1.7",
-    "lint-staged": "^17.0.7",
+    "lint-staged": "^17.0.8",
     "markuplint": "^4.14.1",
     "pa11y-ci": "^4.1.0",
     "postcss-html": "^1.8.1",
