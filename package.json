@@ -6,7 +6,7 @@
     "pa11y-ci": "^4.1.0",
     "postcss-html": "^1.8.1",
     "prettier": "^3.8.3",
-    "stylelint": "^17.13.0",
+    "stylelint": "^17.14.0",
     "stylelint-config-standard": "^40.0.0"
   },
   "scripts": {
