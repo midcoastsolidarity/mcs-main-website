@@ -1,12 +1,12 @@
 {
   "devDependencies": {
     "husky": "^9.1.7",
-    "lint-staged": "^17.0.7",
+    "lint-staged": "^17.0.8",
     "markuplint": "^4.14.1",
     "pa11y-ci": "^4.1.0",
     "postcss-html": "^1.8.1",
-    "prettier": "^3.8.3",
-    "stylelint": "^17.13.0",
+    "prettier": "^3.9.4",
+    "stylelint": "^17.14.0",
     "stylelint-config-standard": "^40.0.0"
   },
   "scripts": {
@@ -28,6 +28,7 @@
     ]
   },
   "overrides": {
-    "uuid": "^13.0.1"
+    "uuid": "^13.0.1",
+    "js-yaml": "^4.2.0"
   }
 }
