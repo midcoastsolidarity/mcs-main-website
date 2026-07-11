@@ -81,28 +81,32 @@
         justify-content: space-around;
       }
 
+      /* Block so the link fills the button: text-align centers the label and
+         the hover highlight covers the whole button. */
+
       .navbar a {
+        display: block;
         color: black;
-        padding: 1em;
+        padding: 0.5em 0.75em;
         text-decoration: none;
         text-align: center;
+        border-radius: 0.4em;
       }
 
       /* Invert colors on hover for a clear affordance. */
       .navbar a:hover {
         background-color: #014f3f;
         color: white;
-        border-radius: 5px;
       }
 
+      /* No fixed height or max-width: each button sizes to its label, and the
+         clamp scales the type with the viewport so labels never overflow. */
+
       .navbar-button {
-        padding: 0.75em 1px;
         background-color: lightgrey;
         border-radius: 0.4em;
         margin: 2px;
-        height: 2.5em;
-        max-width: 18vw;
-        font-size: 2em;
+        font-size: clamp(1.25em, 2.2vw, 2em);
       }
 
       .landing {
@@ -197,15 +201,8 @@
           padding: 1px;
         }
 
-        .navbar-button {
-          font-size: 1.25em;
-          width: auto;
-        }
-
         .navbar a {
-          margin: 1px;
-          padding: 0.3em 0.15em;
-          justify-content: space-evenly;
+          padding: 0.3em 0.4em;
         }
 
         body {
@@ -240,24 +237,19 @@
         style="display: flex; flex-wrap: wrap; align-items: flex-end"
       >
         <div class="navbar-button">
-          <a href="#News">News</a>
-        </div>
-        <div class="navbar-button">
           <a href="#About">About</a>
         </div>
         <div class="navbar-button">
           <a href="#Contact">Contact</a>
         </div>
-        <!--
         <div class="navbar-button">
           <a href="#Activities">Activities</a>
         </div>
-        -->
-        <div class="navbar-button">
-          <a href="#Resources">Resources</a>
-        </div>
         <div class="navbar-button">
           <a href="#Bookclub">Bookclub</a>
+        </div>
+        <div class="navbar-button">
+          <a href="#Resources">Resources</a>
         </div>
         <div class="navbar-button">
           <a href="#Food">Food</a>
@@ -308,30 +300,6 @@
           solidarity in Wabanaki Territory/Midcoast Maine to replace capitalist
           systems through education, advocacy, and organization.
         </h2>
-        <h3 id="News">News and Announcements</h3>
-        <div class="row">
-          <div class="column">
-            <a href="https://midcoastfood.me" target="_blank">
-              <img
-                src="images/midcoastfood.webp"
-                alt="The Midcoast Food logo, which is a simplified illustration of a circle containing a loaf of bread, a lighthouse, a wave, and a heart alongside the website name 'MicoastFood.me'."
-                width="883"
-                height="327"
-                style="max-width: 35vw; max-height: 13vw"
-                class="center"
-              />
-            </a>
-            <h4>Food Resource Launch</h4>
-            <p>
-              <a href="https://midcoastfood.me" target="_blank"
-                >MidcoastFood.me</a
-              >
-              is a new resource intended to connect neighbors with free and
-              local food resources across Maine. Use the interactive map to find
-              food pantries, community fridges, and meal programs near you.
-            </p>
-          </div>
-        </div>
       </div>
 
       <div>
@@ -462,7 +430,7 @@
           >Membership Interest Form</a
         >
       </p>
-      <!--
+
       <div>
         <h3 id="Activities">Activities</h3>
         <h4>Zine Night</h4>
@@ -474,112 +442,20 @@
           style="max-width: 70vw; max-height: 52.5vw"
         />
         <p>
-          The Midcoast Solidarity Bookclub is hosts a monthly zine workshop in
-          Rockland every 2nd Tuesday.
-          <br style="line-height: 2" />
-          Materials will be provided - paper,
-          writing utensils, collage materials, and creativity! - and any
-          additional items you bring to use or share.
+          The Midcoast Solidarity Bookclub hosts a monthly zine workshop in
+          Rockland, Maine every 2nd Tuesday. Materials will be provided (paper,
+          writing utensils, collage materials, and creativity)! Feel free to
+          bring any additional items to use or share. Get in touch if you'd like
+          to be added to the group and/or find out the location.
         </p>
-      </div>
-      -->
-      <div>
-        <h3 id="Resources">Resources</h3>
-        <p>
-          <b>Miles Delivers Action Coalition (MDAC)</b>
-          <br style="line-height: 2" />
-          MDAC is a group organizing to precent the closure of another rural
-          labor & delivery unit in Maine. They are currently organizing to keep
-          the Miles Labor & Delivery unit at MaineHealth's Lincoln Hospital in
-          Damariscotta, Maine open. They have a wide variety of volunteer
-          opportunities. Check out their website at
-          <a href="https://milesdelivers.org" target="_blank"
-            >milesdelivers.org</a
-          >
-        </p>
-
-        <p>
-          <b>Maine Breathes Easy (MEBE)</b>
-          <br style="line-height: 2" />
-          MEBE is a diverse and unranked group of community members that
-          practice precautions against the dangerous impacts of COVID and other
-          serious illnesses. They offer free support, connection, information,
-          testing, personal protective equipment, and more through
-          consensus-driven activities. Visit their website to learn more or to
-          request free masks at
-          <a href="https://mainebreatheseasy.org/" target="_blank"
-            >mainebreatheseasy.org</a
-          >
-        </p>
-
-        <p>
-          <b>ICE Response</b>
-        </p>
-        <ul>
-          <li>
-            <a
-              href="https://maineimmigrantrights.org/mirc-resource-hub/"
-              target="_blank"
-              style="font-size: 1.5em"
-              >Maine Immigrants' Rights Coalition - Welcome to the Maine
-              Immigrant Resource Hub &amp; Hotline</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://ilapmaine.org/know-your-rights"
-              target="_blank"
-              style="font-size: 1.5em"
-              >ILAP Maine - Know Your Rights</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://www.activatemaine.com/"
-              target="_blank"
-              style="font-size: 1.5em"
-              >Activate Maine</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://www.mainesolidarity.org/"
-              target="_blank"
-              style="font-size: 1.5em"
-              >Maine Solidarity Fund</a
-            >
-          </li>
-        </ul>
-
-        <!-- Seasonal: uncomment during the cold months.
-        <p>
-          The
-          <b>Rockland Emergency Warming Center</b>
-          is open on most cold nights. Located at Flanagan Community Center (61
-          Limerock St). Keep an eye on local Facebook pages to announce openings
-          or email
-          <a href="mailto:ewcrockland@gmail.com" target="_blank"
-            >ewcrockland@gmail.com</a
-          >
-          call/text Jessica at (207) 230-4258 with questions. OLD FLYER BELOW
-          for example of what to watch for open nights. Open from 7am to 7pm
-          with dinner and breakfast provided.
-        </p>
-        <img
-          src="images/warming.webp"
-          alt="A flyer for the dates in February 2026 that the Rockland Emergency Warming Center was open. The warming center is located at the Flanagan Community Center on 61 Limerock Street."
-          width="1200"
-          height="927"
-          style="max-width: 70vw; max-height: 54.1vw"
-        /> -->
       </div>
 
       <div>
         <h3 id="Bookclub">Bookclub</h3>
         <p>
-          Bookclub meets every week, alternately in person in Rockland Maine, or
-          virtually via our Signal group, from 6:30pm to 8:00pm. Get in touch if
-          you'd like to be added to the group.
+          Bookclub meets every week, alternately in person in Rockland, Maine,
+          or virtually via our Signal group, from 6:30pm to 8:00pm. Get in touch
+          if you'd like to be added to the group and/or find out the location.
         </p>
         <h4>Currently Reading</h4>
         <div style="display: inline-flex">
@@ -719,6 +595,97 @@
       </div>
 
       <div>
+        <h3 id="Resources">Resources</h3>
+        <p>
+          <b>Miles Delivers Action Coalition (MDAC)</b>
+          <br style="line-height: 2" />
+          MDAC is a group organizing to precent the closure of another rural
+          labor & delivery unit in Maine. They are currently organizing to keep
+          the Miles Labor & Delivery unit at MaineHealth's Lincoln Hospital in
+          Damariscotta, Maine open. They also have a wide variety of volunteer
+          opportunities. Check out their website at
+          <a href="https://milesdelivers.org" target="_blank"
+            >milesdelivers.org</a
+          >.
+        </p>
+
+        <p>
+          <b>Maine Breathes Easy (MEBE)</b>
+          <br style="line-height: 2" />
+          MEBE is a diverse and unranked group of community members that
+          practice precautions against the dangerous impacts of COVID and other
+          serious illnesses. They offer free support, connection, information,
+          testing, personal protective equipment, and more through
+          consensus-driven activities. Visit their website to learn more or to
+          request free masks at
+          <a href="https://mainebreatheseasy.org/" target="_blank"
+            >mainebreatheseasy.org</a
+          >.
+        </p>
+
+        <p>
+          <b>ICE Response</b>
+        </p>
+        <ul>
+          <li>
+            <a
+              href="https://maineimmigrantrights.org/mirc-resource-hub/"
+              target="_blank"
+              style="font-size: 1.5em"
+              >Maine Immigrants' Rights Coalition - Welcome to the Maine
+              Immigrant Resource Hub &amp; Hotline</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://ilapmaine.org/know-your-rights"
+              target="_blank"
+              style="font-size: 1.5em"
+              >ILAP Maine - Know Your Rights</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.activatemaine.com/"
+              target="_blank"
+              style="font-size: 1.5em"
+              >Activate Maine</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.mainesolidarity.org/"
+              target="_blank"
+              style="font-size: 1.5em"
+              >Maine Solidarity Fund</a
+            >
+          </li>
+        </ul>
+
+        <!-- Seasonal: uncomment during the cold months.
+        <p>
+          The
+          <b>Rockland Emergency Warming Center</b>
+          is open on most cold nights. Located at Flanagan Community Center (61
+          Limerock St). Keep an eye on local Facebook pages to announce openings
+          or email
+          <a href="mailto:ewcrockland@gmail.com" target="_blank"
+            >ewcrockland@gmail.com</a
+          >
+          call/text Jessica at (207) 230-4258 with questions. OLD FLYER BELOW
+          for example of what to watch for open nights. Open from 7am to 7pm
+          with dinner and breakfast provided.
+        </p>
+        <img
+          src="images/warming.webp"
+          alt="A flyer for the dates in February 2026 that the Rockland Emergency Warming Center was open. The warming center is located at the Flanagan Community Center on 61 Limerock Street."
+          width="1200"
+          height="927"
+          style="max-width: 70vw; max-height: 54.1vw"
+        /> -->
+      </div>
+
+      <div>
         <h3 id="Food">Food</h3>
         <a href="https://midcoastfood.me" target="_blank">
           <img
@@ -726,18 +693,53 @@
             alt="The Midcoast Food logo, which is a simplified illustration of a circle containing a loaf of bread, a lighthouse, a wave, and a heart alongside the website name 'MicoastFood.me'."
             width="883"
             height="327"
-            style="max-width: 80vw; max-height: 29.6vw"
+            style="max-width: 67.5vw; max-height: 25vw"
           />
         </a>
-        <p>
-          Midcoast Solidarity has launched
-          <a href="https://midcoastfood.me" target="_blank">MidcoastFood.me</a>,
-          a new resource intended to connect neighbors with free and local food
-          resources across Maine. Use the interactive map to find food pantries,
-          community fridges, and meal programs near you.
-        </p>
+        <ul>
+          <li>
+            <p>
+              Midcoast Solidarity has launched
+              <a href="https://midcoastfood.me" target="_blank"
+                >MidcoastFood.me</a
+              >, a new resource intended to connect neighbors with free and
+              local food resources across Maine. Use the interactive map to find
+              food pantries, community fridges, and meal programs near you.
+            </p>
+          </li>
+        </ul>
+        <a
+          href="https://www.instagram.com/foodnotbombskennebec/"
+          target="_blank"
+        >
+          <img
+            src="images/fnbkennebec.webp"
+            alt="The Food Not Bombs Kennebec chapter logo, which is an illustration of the solidarity fist holding a carrot."
+            width="1080"
+            height="1080"
+            style="max-width: 25vw; max-height: 25vw"
+          />
+        </a>
+        <ul>
+          <li>
+            <p>
+              There is now a capital area branch of
+              <a href="https://foodnotbombs.net" target="_blank"
+                >Food Not Bombs</a
+              >
+              that serves Gardiner, Hallowell, Augusta, Waterville, and
+              everywhere in-between! Check them out on Instagram
+              <a
+                href="https://www.instagram.com/foodnotbombskennebec/"
+                target="_blank"
+                >@foodnotbombskennebec</a
+              >.
+            </p>
+          </li>
+        </ul>
       </div>
     </div>
+
     <div>
       <footer>
         <p>We keep us safe</p>

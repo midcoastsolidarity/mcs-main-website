@@ -74,6 +74,17 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Install Chrome for Puppeteer
+        # pa11y drives Chrome through puppeteer. Install the browser as an
+        # explicit, visible step rather than trusting puppeteer's postinstall,
+        # whose failures npm swallows (puppeteer 24.x shipped a zip extraction
+        # that broke silently on node 26, which is why puppeteer is overridden
+        # to 25.x in package.json). Clearing the cache first removes any
+        # partial browser folder the installer refuses to repair.
+        run: |
+          rm -rf ~/.cache/puppeteer
+          npx puppeteer browsers install chrome
+
       - name: Accessibility tests (Pa11y)
         run: npm run test:a11y
 
