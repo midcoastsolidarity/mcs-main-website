@@ -26,6 +26,8 @@ This project uses `npm` only for tooling (no runtime JS shipped). Run this once 
 npm ci
 ```
 
+npm 12 and later block dependency install scripts unless they are allow-listed. `package.json` carries an `allowScripts` approval for puppeteer's postinstall (the browser download pa11y needs), pinned to the current version. After a puppeteer version bump, re-approve it with `npm install-scripts approve puppeteer`.
+
 If you use a Node version manager like `nvm` or `fnm`, we support automatic Node runtime switching with our `.nvmrc` file:
 
 ```bash
@@ -73,6 +75,42 @@ Dependency and GitHub Actions updates arrive as weekly Dependabot PRs (see `.git
 4. `npm run lint:css && npm run lint:html`
 5. `git add, commit` (`lint-staged` + `pa11y-ci` will run on commit)
 6. Push / open PR (CI will run the same checks)
+
+## Commit messages and pull requests
+
+### Commit subjects
+
+Write subjects as `type: short summary`, matching the existing history:
+
+```
+info: July 2026 website updates
+deps: bump toolchain and clear undici/js-yaml advisories
+docs: split contributor guide out of README into CONTRIBUTING.md
+ci: bump actions/checkout from 6.0.3 to 7.0.0
+```
+
+- Types in use: `info` (site content and copy), `docs` (README, CONTRIBUTING, other docs), `deps` (dev dependencies and lockfile), `ci` (workflows and actions). Dependabot is configured to use `deps` and `ci` (see `.github/dependabot.yml`), so keep those meanings stable. Add a new type sparingly when a change fits none of these (for example `fix` for site layout or behavior bugs).
+- Keep the summary imperative and concrete ("bump X", "split Y", "update Z"), lowercase the type, skip the trailing period, and stay under about 70 characters.
+- Name branches `type/short-slug` after the type the squashed commit will carry (for example `info/refactor-navbar`).
+- PRs are squash-merged, so the PR title becomes the commit subject on `main` (GitHub appends the `(#N)` reference). Write PR titles in the same `type: summary` form.
+
+### Commit bodies
+
+A subject alone is fine for a small self-explanatory change. When a body helps, spend it on why, not a replay of the diff:
+
+- Separate the subject from the body with a blank line and wrap body lines at about 72 characters.
+- Bullet related changes with `-`, and write version bumps as `old -> new` (for example `prettier 3.8.3 -> 3.9.4`).
+- Name what a future reader will search for: advisory IDs (`GHSA-...`), PR numbers, config file paths.
+
+### PR descriptions
+
+Follow `.github/PULL_REQUEST_TEMPLATE.md` (What and why, Changes, Verification, Notes for reviewers). Keep it short and delete sections that do not apply.
+
+- **What and why** is a sentence or two of motivation. The diff already shows the what, so spend the words on the why.
+- **Verification** says what you actually ran or looked at: linters, `test:a11y`, which pages you opened in a browser and at what widths. CI running on the PR is a given, not a verification.
+- **Notes for reviewers** flags follow-ups, uncertainty, and anything expected to be red (for example a base-branch advisory) so nobody is surprised.
+
+When in doubt, read a few merged PRs and match them.
 
 ## Repository layout notes
 

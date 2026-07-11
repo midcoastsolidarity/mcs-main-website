@@ -30,5 +30,8 @@
   "overrides": {
     "uuid": "^13.0.1",
     "js-yaml": "^4.2.0"
+  },
+  "allowScripts": {
+    "puppeteer@24.40.0": true
   }
 }
