@@ -76,9 +76,12 @@ jobs:
 
       - name: Install Chrome for Puppeteer
         # pa11y drives Chrome through puppeteer. The postinstall download is
-        # not guaranteed under npm's install-script policies, so install the
-        # pinned browser explicitly; a no-op when it is already present.
-        run: npx puppeteer browsers install chrome
+        # unreliable on the runner and fails silently, sometimes leaving a
+        # partial browser folder that the installer refuses to repair. Clear
+        # the cache and install the pinned browser explicitly and visibly.
+        run: |
+          rm -rf ~/.cache/puppeteer
+          npx puppeteer browsers install chrome
 
       - name: Accessibility tests (Pa11y)
         run: npm run test:a11y
