@@ -18,7 +18,7 @@ npx serve
 ## Project structure
 
 ```bash
-mcs_main_website
+mcs-main-website
 ❯ tree
 .
 ├── README.md                    # you're looking at it right now
