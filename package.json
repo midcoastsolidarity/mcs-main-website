@@ -1,0 +1,39 @@
+{
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^17.3.0",
+    "markuplint": "^4.14.1",
+    "pa11y-ci": "^4.1.0",
+    "postcss-html": "^2.0.0",
+    "prettier": "^3.9.6",
+    "stylelint": "^17.14.1",
+    "stylelint-config-standard": "^40.0.0"
+  },
+  "scripts": {
+    "//0": "--- FORMATTING AND LINTING ---",
+    "format": "prettier --write --config config/prettier.config.json \"**/*.html\"",
+    "format:check": "prettier --check --config config/prettier.config.json \"**/*.html\"",
+    "lint:css": "stylelint --fix --config config/stylelint.config.json --custom-syntax postcss-html --max-warnings=0 \"**/*.html\"",
+    "lint:html": "markuplint --fix --config config/markuplint.config.json \"**/*.html\"",
+    "lint:prose": "node config/check-prose.mjs",
+    "//1": "--- ACCESSIBILITY TESTING ---",
+    "test:a11y": "pa11y-ci --config config/pa11y.config.json",
+    "//2": "--- PRE-COMMIT ---",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.html": [
+      "prettier --check --config config/prettier.config.json",
+      "stylelint --config config/stylelint.config.json --custom-syntax postcss-html --max-warnings=0",
+      "markuplint --config config/markuplint.config.json"
+    ]
+  },
+  "overrides": {
+    "uuid": "^13.0.1",
+    "js-yaml": "^4.2.0",
+    "puppeteer": "^25.3.0"
+  },
+  "allowScripts": {
+    "puppeteer@25.3.0": true
+  }
+}
