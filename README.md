@@ -40,9 +40,11 @@ mcs-main-website
 │   ├── stylelint.config.json    # `stylelint` config for HTML/CSS linting
 │   ├── markuplint.config.json   # `markuplint` config for HTML linting
 │   ├── pa11y.config.json        # `pa11y` config for accessibility tests
-│   └── yamllint.yml             # relaxed `yamllint` ruleset for the CI workflow
+│   ├── yamllint.yml             # relaxed `yamllint` ruleset for the CI workflow
+│   └── check-prose.mjs          # house style checks for copy and commit messages
 ├── .husky
-│   └── pre-commit               # `husky` pre commit hooks
+│   ├── pre-commit               # `husky` pre commit hooks
+│   └── commit-msg               # checks the commit message against the house style
 ├── images                       # folder containing all website pics
 │   └── books                    # subfolder for book covers
 ├── handbook_101525.html         # html export of the org handbook

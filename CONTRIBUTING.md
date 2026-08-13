@@ -57,7 +57,7 @@ fnm use
   - Markuplint (`config/markuplint.config.json`)
 - `pa11y-ci` reads `config/pa11y.config.json` and runs accessibility checks against the listed files
 - Run staged checks locally the same way as CI by committing changes (Husky will trigger) or run the linters directly with the scripts above
-  - You may need to `chmod +x .husky/pre-commit` to make it executable
+  - You may need to `chmod +x .husky/pre-commit .husky/commit-msg` to make them executable
 
 ### Continuous integration
 
@@ -280,7 +280,7 @@ Commits are signed. If one fails with `incorrect passphrase supplied to decrypt 
 
 ### Commit subjects
 
-Write subjects as `type: short summary`, matching the existing history:
+Write subjects as `type: short summary`:
 
 ```
 info: July 2026 website updates
@@ -299,7 +299,7 @@ ci: bump actions/checkout from 6.0.3 to 7.0.0
 A subject alone is fine for a small self-explanatory change. When a body helps, spend it on why, not a replay of the diff:
 
 - Separate the subject from the body with a blank line.
-- Write each paragraph as one line. Do not hard wrap. Every viewer that shows a commit body wraps it for you, at whatever width the reader actually has, and a body wrapped at a fixed column reflows badly in all of them. `commit-msg` rejects a body that looks hard wrapped.
+- Write each paragraph as one line rather than hard wrapping it. GitHub rewraps the body to the width of the reader's window, and a paragraph that was already broken at a fixed column comes out ragged there. `commit-msg` rejects a body that looks hard wrapped.
 - Bullet related changes with `-`, and write version bumps as `old -> new` (for example `prettier 3.8.3 -> 3.9.4`).
 - Name what a future reader will search for: advisory IDs (`GHSA-...`), PR numbers, config file paths.
 
@@ -311,21 +311,21 @@ Follow `.github/PULL_REQUEST_TEMPLATE.md` (What and why, Changes, Verification, 
 - **Verification** says what you actually ran or looked at: linters, `test:a11y`, which pages you opened in a browser and at what widths. CI running on the PR is a given, not a verification.
 - **Notes for reviewers** flags follow-ups, uncertainty, and anything expected to be red (for example a base-branch advisory) so nobody is surprised.
 
-When in doubt, read a few merged PRs and match them.
+When in doubt, keep it short and spend the words on why.
 
-Write the description before you open the PR, and get it right the first time. GitHub keeps a public revision history for every edited PR body, and there is no way to remove it short of deleting the repository. If a description needs a real rewrite, close the PR and open a new one.
+Write the description before you open the PR rather than after. GitHub keeps a public revision history for every edited PR body, and there is no way to clear it short of deleting the repository, so an edit is permanent and visible. If a description needs a real rewrite, close the PR and open a new one.
 
 ## House style
 
-These rules cover the page copy, the docs, and commit messages. `npm run lint:prose` checks the first two and the `commit-msg` hook checks the third, both through `config/check-prose.mjs`.
+Most of this comes down to being readable to somebody who is not already in the room with us. People reach the site on old phones, on slow connections, and with screen readers, and a fair number of them are deciding whether we are worth showing up for.
 
-- **No em dashes and no en dashes.** Use a comma, a colon, or a full stop. A plain hyphen is right for a range (`1-10`), and "to" is right for a date range in a sentence.
-- **No emoji.** In page copy they rarely survive a screen reader in the order you expect, and they date a page fast.
-- **One term per concept.** Repeat the term rather than reaching for a synonym. A reader skimming for the word they were told to look for should find that word.
-- **Short sentences, active voice, named subject.** Say who does the thing.
-- **One blank line** between paragraphs in Markdown, never two.
+So: short sentences, and say who is doing the thing. Pick the plain word. When a term matters, reuse it instead of reaching for a synonym, because somebody skimming for the word they were told to look for ought to find that word.
 
-Do not name a drafting tool in a commit message or a PR description, and do not add a `Co-authored-by` trailer for one. Describe the change. Who or what typed it is not what a future reader is looking for, and `commit-msg` rejects a trailer that names anything other than this repository's own account.
+Keep the punctuation boring. Commas, colons and full stops carry nearly everything, and a plain hyphen covers a range. Skip the fancier dashes and the decorative characters. They are read aloud in ways you did not intend, they land badly when a line wraps on a narrow screen, and half our contributors have to go hunting for them on the keyboard anyway. Emoji have the same problems and date a page fast. In Markdown, one blank line between paragraphs.
+
+`npm run lint:prose` checks the page copy and the docs, and `commit-msg` checks commit messages. Both go through `config/check-prose.mjs`. When one of them objects to a character, a comma or a full stop is almost always the fix.
+
+A commit message describes the change, not how it came to be written. Keep `Co-authored-by` trailers for people who actually worked on it here. The hook rejects the rest, which mostly stops a stray trailer from another machine's git config following you into the history.
 
 ## Repository layout notes
 

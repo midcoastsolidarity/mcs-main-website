@@ -3,9 +3,9 @@
 //   node config/check-prose.mjs                    page copy and docs
 //   node config/check-prose.mjs --commit-msg FILE  a commit message
 //
-// The typography rules are the ones in CONTRIBUTING.md: no em or en dashes,
-// no emoji. Page copy is the text most people actually read, so it is worth
-// linting the same way the CSS and markup are.
+// The rules are the ones written down under House style in CONTRIBUTING.md.
+// Page copy is the text most people actually read, so it is worth linting the
+// same way the CSS and the markup are.
 //
 // Deliberately dependency-free. The commit-msg hook runs before anything is
 // installed on a fresh clone, and CI should not need another package for a
@@ -19,7 +19,7 @@ const ROOT = process.cwd();
 const SKIP_DIRS = new Set(['node_modules', '.git', '.husky', 'images']);
 const TEXT_EXT = /\.(html|md)$/;
 
-// Em dash and en dash. Use a comma, a colon, or a full stop instead. A plain
+// The wide dashes. A comma, a colon or a full stop reads better, and a plain
 // hyphen is fine for a range.
 const DASHES = /[\u2014\u2013]/;
 // Characters that default to emoji presentation, plus the variation selector
@@ -43,7 +43,7 @@ function walk(dir, out = []) {
 function checkTypography(text, where, offset = 0) {
   text.split('\n').forEach((line, i) => {
     const n = i + 1 + offset;
-    if (DASHES.test(line)) flag(where, n, 'em or en dash; use a comma, a colon, or a full stop');
+    if (DASHES.test(line)) flag(where, n, 'wide dash; use a comma, a colon, or a full stop');
     if (EMOJI.test(line)) flag(where, n, 'emoji');
   });
 }
@@ -91,8 +91,10 @@ function checkCommitMsg(file) {
 
   body.forEach((line, i) => {
     const n = i + 1;
-    if (/\b(claude|anthropic)\b/i.test(line)) {
-      flag(where, n, 'mentions an authoring tool; describe the change, not what wrote it');
+    // "Generated with X", "Written by Y". Credit lines belong in the PR
+    // conversation if anywhere; the body should say what changed.
+    if (/^\s*(generated|authored|written|drafted|created|co-?authored)\s+(with|by)\b/i.test(line)) {
+      flag(where, n, 'credits a tool or a third party; say what the change does instead');
     }
     const coAuthor = line.match(/^Co-authored-by:.*<([^>]+)>/i);
     if (coAuthor) {
