@@ -329,7 +329,7 @@ A commit message describes the change, not how it came to be written. Keep `Co-a
 
 ## Repository layout notes
 
-The four linter configs live in `config/` so the root stays uncluttered. Each tool is pointed at its file with an explicit `--config` flag in the npm scripts. `.nvmrc` stays at the root because `nvm use` / `fnm use` only read it from the current directory, and `package.json` / `package-lock.json` stay at the root so `npm ci` and `npm run` work without a `--prefix`.
+The four linter configs live in `config/` so the root stays uncluttered. Each tool is pointed at its file with an explicit `--config` flag in the npm scripts. `.nvmrc` stays at the root because `nvm use` / `fnm use` only read it from the current directory, and `package.json` / `package-lock.json` stay at the root so `npm ci` and `npm run` work without a `--prefix`. `cspell.json` also stays at the root. The spell checker searches upward from the file it checks, so a copy under `config/` would cover only `config/`.
 
 ## Conventions
 
