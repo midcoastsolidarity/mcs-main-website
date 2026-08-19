@@ -38,22 +38,29 @@ fnm use
 
 ### Key npm scripts (run with `npm run <name>`)
 
+- `fix`: applies every automatic fix, in the one order that leaves the tree committable
 - `format`: formats HTML with Prettier
 - `format:check`: checks formatting (used in CI)
-- `lint:css`: runs Stylelint against HTML using postcss-html
-- `lint:html`: runs Markuplint on HTML
+- `lint:css`: checks HTML with Stylelint using postcss-html
+- `lint:css:fix`: the same check, applying Stylelint's automatic fixes
+- `lint:html`: checks HTML with Markuplint
+- `lint:html:fix`: the same check, applying Markuplint's automatic fixes
 - `lint:prose`: checks page copy and docs against the [house style](#house-style) (`config/check-prose.mjs`)
 - `test:a11y`: runs pa11y-ci accessibility tests
 - `prepare`: installs Husky hooks (run automatically after `npm ci`)
+
+Only `fix`, `format` and the two `:fix` scripts write to your files. Everything else reports and exits, which is what the pre-commit hook and CI need from a check.
+
+Prettier and Markuplint disagree about where a closing tag goes. Prettier writes `</a\n>` and `markuplint --fix` pulls it back onto one line, so a Markuplint fix leaves formatting that `format:check` rejects. Prettier is the formatter of record here, because the pre-commit hook and CI both gate on `prettier --check`. So `npm run fix` runs the linters first and Prettier last. Use it instead of the individual `:fix` scripts and you cannot get that order wrong. If it stops on a linting error, fix the markup by hand and run it again.
 
 ### Pre-commit and staged checks
 
 - Husky installs Git hooks (via the `npm run prepare` script)
 - The `.husky/pre-commit` hook runs `lint-staged` and then `pa11y-ci`
 - The `.husky/commit-msg` hook checks the commit message against the [house style](#house-style)
-- `lint-staged` runs automatic fixes/linters on staged `*.html` files:
+- `lint-staged` runs the non-writing checks on staged `*.html` files:
   - Prettier (check, `config/prettier.config.json`)
-  - Stylelint (fix with `postcss-html`, `config/stylelint.config.json`)
+  - Stylelint (with `postcss-html`, `config/stylelint.config.json`)
   - Markuplint (`config/markuplint.config.json`)
 - `pa11y-ci` reads `config/pa11y.config.json` and runs accessibility checks against the listed files
 - Run staged checks locally the same way as CI by committing changes (Husky will trigger) or run the linters directly with the scripts above
@@ -73,8 +80,8 @@ Dependency and GitHub Actions updates arrive as weekly Dependabot PRs (see `.git
 
 1. `npm ci`
 2. Edit `*.html`
-3. `npm run format`
-4. `npm run lint:css && npm run lint:html && npm run lint:prose`
+3. `npm run fix`
+4. `npm run lint:prose`
 5. `git add, commit` (`lint-staged` + `pa11y-ci` will run on commit)
 6. Push / open PR (CI will run the same checks)
 
@@ -176,13 +183,7 @@ npx puppeteer browsers install chrome
 
 For Security, `npm audit` covers the same ground as OSV-Scanner closely enough for dependency work. Gitleaks and Trivy almost never fire on a dependency change. `dependency-review` only runs on pull requests, because it needs a base to diff against.
 
-**`lint:css` and `lint:html` rewrite your HTML.** Both npm scripts pass `--fix`. Run `git status` after them.
-
-There is a live disagreement between Markuplint and Prettier about where a closing tag goes. Prettier writes `</a\n>` and `npm run lint:html` rewrites it to `</a>`, so Markuplint reformats HTML that `format:check` considers correct. CI does not notice, because `format:check` runs earlier in the job and the runner is thrown away before anything is saved. Locally the edit is real and it will follow you into a commit. Unless you meant to touch the markup:
-
-```bash
-git checkout -- '*.html'
-```
+None of these commands writes to your files. That is the point of the split. CI has to fail on a violation, not repair it in a runner that is then thrown away. Run `npm run fix` when you want the fixes applied.
 
 ### Major version bumps
 
