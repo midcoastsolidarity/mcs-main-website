@@ -1,10 +1,7 @@
 {
   "version": "0.2",
   "language": "en",
-  "ignorePaths": [
-    "node_modules/**",
-    "package-lock.json"
-  ],
+  "ignorePaths": ["node_modules/**", "package-lock.json"],
   "words": [
     "Androscoggin",
     "antagonization",
@@ -55,6 +52,8 @@
     "Waldoboro",
     "Waterville",
     "WCAG",
-    "Yanis"
+    "Yanis",
+    "Eman",
+    "Abdelhadi"
   ]
 }
