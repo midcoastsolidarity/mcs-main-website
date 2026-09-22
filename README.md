@@ -23,7 +23,7 @@ mcs-main-website
 .
 ├── README.md                    # you're looking at it right now
 ├── CONTRIBUTING.md              # dev setup, tooling, and conventions
-├── LICENSE                      # GPL is the greatest license ever
+├── LICENSE                      # AGPL is the greatest license ever
 ├── CNAME                        # our custom domain
 ├── .gitignore                   # tells git what to ignore
 ├── .github
@@ -58,4 +58,4 @@ Edits to the site, the tooling, or the docs are welcome. See [CONTRIBUTING.md](C
 
 ## License
 
-Released under the GPL. See [LICENSE](LICENSE) for the full text.
+Released under the AGPL. See [LICENSE](LICENSE) for the full text.
