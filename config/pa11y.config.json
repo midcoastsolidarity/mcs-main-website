@@ -1,5 +1,5 @@
 {
-  "urls": ["./index.html", "./handbook_101525.html"],
+  "urls": ["./index.html", "./handbook_101525.html", "./data_policy_092326.html"],
   "defaults": {
     "standard": "WCAG2AA",
     "timeout": 30000,

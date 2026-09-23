@@ -48,6 +48,7 @@ mcs-main-website
 │   └── commit-msg               # checks the commit message against the house style
 ├── images                       # folder containing all website pics
 │   └── books                    # subfolder for book covers
+├── data_policy_092326.html      # what the JotForm forms collect, and deletion requests
 ├── handbook_101525.html         # html export of the org handbook
 └── index.html                   # main website code
 ```

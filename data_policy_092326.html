@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <title>Midcoast Solidarity Data Policy</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.webp" />
+    <meta name="description" content="What our forms collect and who sees it" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self' data:;"
+    />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+      }
+
+      /* Per-tag font sizes. This page has one h1 and then section headings, so
+         h2 carries the underlined treatment that h3 has on the landing page. */
+
+      h1 {
+        font-size: 2.5em;
+      }
+
+      h2 {
+        font-size: 2em;
+        text-decoration: underline;
+      }
+
+      p,
+      ul {
+        font-size: 1.5em;
+      }
+
+      /* Sticky so the header stays put on scroll; box-shadow separates it from content. */
+      header {
+        padding: 0 10px;
+        text-align: left;
+        background: white;
+        color: black;
+        display: flex;
+        flex-flow: row wrap;
+        place-content: stretch space-around;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        box-shadow: 5px 5px 9px 1px rgb(0 0 0 / 52%);
+        min-height: 20vh;
+        max-height: 34vh;
+      }
+
+      .heading {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 300%;
+        max-height: 200px;
+        text-align: center;
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: space-around;
+      }
+
+      /* Block so the link fills the button: text-align centers the label and
+         the hover highlight covers the whole button. */
+
+      .navbar a {
+        display: block;
+        color: black;
+        padding: 0.5em 0.75em;
+        text-decoration: none;
+        text-align: center;
+        border-radius: 0.4em;
+      }
+
+      /* Invert colors on hover for a clear affordance. */
+      .navbar a:hover {
+        background-color: #014f3f;
+        color: white;
+      }
+
+      /* No fixed height or max-width: each button sizes to its label, and the
+         clamp scales the type with the viewport so labels never overflow. */
+
+      .navbar-button {
+        background-color: lightgrey;
+        border-radius: 0.4em;
+        margin: 2px;
+        font-size: clamp(1.25em, 2.2vw, 2em);
+      }
+
+      /* 10vw side margins keep a readable measure on wide screens. */
+      .main {
+        padding: calc(25px + 2vw) 2vw;
+        margin-inline: 10vw;
+        width: auto;
+        height: 80%;
+        background-color: white;
+      }
+
+      footer {
+        padding: 10px 40px;
+        background: #014f3f;
+        color: white;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      /* Phone overrides: stack to a single full-width column and shrink type. */
+      @media only screen and (width <= 620px) {
+        header,
+        .navbar {
+          width: 100%;
+          margin: 0;
+          padding: 1px;
+        }
+
+        .navbar a {
+          padding: 0.3em 0.4em;
+        }
+
+        body {
+          font-size: small;
+        }
+
+        .main {
+          width: 100%;
+          margin: 0;
+          padding: 5px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div style="max-height: 200px; text-align: right">
+        <img
+          src="images/logo.webp"
+          alt="The midcoastsolidarity logo which is the Maine pine tree and star within the solidarity fist."
+          width="216"
+          height="216"
+          style="max-width: 11vh; max-height: 11vh"
+        />
+      </div>
+      <div class="heading" style="display: flex; align-items: center">
+        Midcoast Solidarity
+      </div>
+
+      <div
+        class="navbar"
+        style="display: flex; flex-wrap: wrap; align-items: flex-end"
+      >
+        <div class="navbar-button">
+          <a href="index.html#About">About</a>
+        </div>
+        <div class="navbar-button">
+          <a href="index.html#Contact">Contact</a>
+        </div>
+        <div class="navbar-button">
+          <a href="index.html#Activities">Activities</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="main">
+        <h1>Data Policy</h1>
+        <p>Last updated September 23, 2026</p>
+        <p>
+          This page explains what our forms collect, who holds that data, and
+          how to get it deleted. We don't have any lawyers, so this isn't a
+          legal privacy policy. If something looks wrong, tell us and we'll fix
+          it.
+        </p>
+
+        <h2>Our website</h2>
+        <p>
+          Our website doesn't run any JavaScript and doesn't set any cookies.
+          GitHub hosts it, so GitHub can see which pages you load here.
+        </p>
+
+        <h2>Our forms</h2>
+        <p>
+          Our two signup forms are hosted by JotForm, a separate company. What
+          you type into them goes to JotForm, not to this website.
+        </p>
+        <p>The Email List and Interest Form asks for:</p>
+        <ul>
+          <li>Your name, pronouns, town, and the best way to reach you</li>
+          <li>
+            A phone number and Signal username, only if you want the virtual
+            book club
+          </li>
+          <li>Which activities and book club meetings interest you</li>
+          <li>
+            Skills you can share, a project you need help with, and how you
+            heard about us
+          </li>
+        </ul>
+        <p>The Membership Interest Form asks for:</p>
+        <ul>
+          <li>Your name and email address</li>
+          <li>
+            Whether you want to become a member, and whether you have time for a
+            vetting interview
+          </li>
+          <li>Which of our events you have attended or plan to attend</li>
+        </ul>
+
+        <h2>Who holds your data</h2>
+        <p>
+          JotForm processes and stores your answers for us as a third-party
+          service. JotForm stores form responses on its own servers. The
+          organizers who run our forms can read your answers. JotForm's pages
+          also run JotForm's own scripts, and its
+          <a
+            href="https://www.jotform.com/privacy/"
+            target="_blank"
+            rel="noopener"
+            >privacy policy</a
+          >
+          covers what JotForm itself records.
+        </p>
+
+        <h2>How long we keep it</h2>
+        <p>
+          We delete form responses once we have acted on them, or sooner if you
+          ask. A deleted response sits in JotForm's trash for up to 30 days
+          before it is gone for good.
+        </p>
+
+        <h2>Getting your data deleted</h2>
+        <p>
+          To see or delete what you sent us, email
+          <a href="mailto:info@midcoastsolidarity.org"
+            >info@midcoastsolidarity.org</a
+          >. Tell us which form you filled out and the name or email you used.
+          We will delete your responses from JotForm.
+        </p>
+      </div>
+    </main>
+
+    <div>
+      <footer>
+        <p>We keep us safe</p>
+        <p>
+          <a
+            href="mailto:info@midcoastsolidarity.org"
+            style="text-decoration: none; color: white"
+            target="_blank"
+            rel="noopener"
+            >info@midcoastsolidarity.org</a
+          >
+        </p>
+        <p>2026</p>
+      </footer>
+    </div>
+  </body>
+</html>
