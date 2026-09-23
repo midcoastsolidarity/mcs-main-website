@@ -70,7 +70,7 @@ Prettier and Markuplint disagree about where a closing tag goes. Prettier writes
 
 The GitHub Actions workflow (`ci.yml`) sources its Node version from `.nvmrc` and runs three jobs in parallel, each surfacing as its own check:
 
-- **Quality**: `npm ci`, then `format:check`, `lint:css`, `lint:html`, `lint:prose`, and a `yamllint` pass over `.github` using `config/yamllint.yml`
+- **Format & Lint**: `npm ci`, then `format:check`, `lint:css`, `lint:html`, `lint:prose`, and a `yamllint` pass over `.github` using `config/yamllint.yml`
 - **Accessibility**: `npm ci`, then `test:a11y` (pa11y-ci)
 - **Security**: Gitleaks (secret scanning over history), Trivy (filesystem vuln/misconfig/secret scan), OSV-Scanner (dependency SCA on `package-lock.json`), `npm audit` (informational), and `dependency-review` (pull requests only)
 
@@ -262,7 +262,7 @@ Comment these on a Dependabot PR:
 ### In the GitHub web UI
 
 - **The PR description** carries the upstream release notes and commit list. Read them before trusting a major.
-- **Merge button greyed out.** The merge box lists the required checks and whether the branch is behind `main`. Where `main` is protected, a strict status check policy means you need "Update branch" before the merge button lights up, and the checks then re-run against the merged result.
+- **Merge button greyed out.** The merge box lists the required checks and whether the branch is behind `main`. A PR has to be up to date with `main` to merge. So after every merge, the next PR needs "Update branch" (or `gh pr update-branch <number>`) and a fresh green run.
 - **Security tab, Dependabot alerts.** Same advisories OSV-Scanner reports, with the dependency path that pulled each one in. Useful for working out which direct dependency to bump to shift a transitive one.
 - **Actions tab.** Re-run individual failed jobs without pushing an empty commit.
 
@@ -292,6 +292,7 @@ ci: bump actions/checkout from 6.0.3 to 7.0.0
 
 - Types in use: `info` (site content and copy), `docs` (README, CONTRIBUTING, other docs), `deps` (dev dependencies and lockfile), `ci` (workflows and actions). Dependabot is configured to use `deps` and `ci` (see `.github/dependabot.yml`), so keep those meanings stable. Add a new type sparingly when a change fits none of these (for example `fix` for site layout or behavior bugs).
 - Keep the summary imperative and concrete ("bump X", "split Y", "update Z"), lowercase the type, skip the trailing period, and stay under about 70 characters.
+- Label each PR from its type: `docs` gets `documentation`, `info` gets `information`, `deps` gets `dependencies` and `javascript`, and `fix` gets `bug`.
 - Name branches `type/short-slug` after the type the squashed commit will carry (for example `info/refactor-navbar`).
 - PRs are squash-merged, so the PR title becomes the commit subject on `main` (GitHub appends the `(#N)` reference). Write PR titles in the same `type: summary` form.
 
