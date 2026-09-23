@@ -290,9 +290,9 @@ docs: split contributor guide out of README into CONTRIBUTING.md
 ci: bump actions/checkout from 6.0.3 to 7.0.0
 ```
 
-- Types in use: `info` (site content and copy), `docs` (README, CONTRIBUTING, other docs), `deps` (dev dependencies and lockfile), `ci` (workflows and actions). Dependabot is configured to use `deps` and `ci` (see `.github/dependabot.yml`), so keep those meanings stable. Add a new type sparingly when a change fits none of these (for example `fix` for site layout or behavior bugs).
+- Types in use: `info` (site content and copy), `docs` (README, CONTRIBUTING, other docs), `deps` (dev dependencies and lockfile), `ci` (workflows and actions). Use `sec` for security hardening and security fixes. Dependabot is configured to use `deps` and `ci` (see `.github/dependabot.yml`), so keep those meanings stable. Add a new type sparingly when a change fits none of these (for example `fix` for site layout or behavior bugs).
 - Keep the summary imperative and concrete ("bump X", "split Y", "update Z"), lowercase the type, skip the trailing period, and stay under about 70 characters.
-- Label each PR from its type: `docs` gets `documentation`, `info` gets `information`, `deps` gets `dependencies` and `javascript`, and `fix` gets `bug`.
+- Label each PR from its type: `docs` gets `documentation`, `info` gets `information`, `deps` gets `dependencies` and `javascript`, `fix` gets `bug`, and `sec` gets `security`.
 - Name branches `type/short-slug` after the type the squashed commit will carry (for example `info/refactor-navbar`).
 - PRs are squash-merged, so the PR title becomes the commit subject on `main` (GitHub appends the `(#N)` reference). Write PR titles in the same `type: summary` form.
 
