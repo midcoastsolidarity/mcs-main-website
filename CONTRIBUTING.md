@@ -266,14 +266,7 @@ Comment these on a Dependabot PR:
 - Security tab, Dependabot alerts: same advisories OSV-Scanner reports, with the dependency path that pulled each one in. Useful for working out which direct dependency to bump to shift a transitive one.
 - Actions tab: re-run individual failed jobs without pushing an empty commit.
 
-### Account and signing key
-
-The two sites use separate GitHub accounts and separate signing keys. `gh` acts as whichever account is active, so creating a PR against the other site fails with `must be a collaborator`:
-
-```bash
-gh auth status
-gh auth switch --user <account>
-```
+### Signing key
 
 Commits are signed. If one fails with `incorrect passphrase supplied to decrypt private key`, the signing key is not loaded in your SSH agent. Add it (`ssh-add <path-to-key>`) and commit again.
 
