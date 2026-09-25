@@ -14,4 +14,4 @@ How did you check this works? For site changes, note what you opened and looked 
 
 ## Notes for reviewers
 
-Anything worth flagging: follow-ups, things you are unsure about, or context that is not obvious from the diff. Delete if there is nothing to add.
+Anything to flag: follow-ups, things you are unsure about, or context that is not obvious from the diff. Delete if there is nothing to add.

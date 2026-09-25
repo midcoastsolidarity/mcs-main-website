@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for helping out with the Midcoast Solidarity site. This is a static HTML and CSS site with no build step and no shipped JavaScript. The `npm` setup below exists only for local dev tooling (formatting, linting, accessibility checks); none of it reaches the deployed site.
+Thanks for helping out with the Midcoast Solidarity site. This is a static HTML and CSS site without a build step or shipped JavaScript. The `npm` setup below exists only for local dev tooling (formatting, linting, accessibility checks); none of it reaches the deployed site.
 
 ## Development
 
@@ -26,7 +26,7 @@ This project uses `npm` only for tooling (no runtime JS shipped). Run this once 
 npm ci
 ```
 
-npm 12 and later block dependency install scripts unless they are allow-listed. `package.json` carries an `allowScripts` approval for puppeteer's postinstall (the browser download pa11y needs), pinned to the current version. After a puppeteer version bump, re-approve it with `npm install-scripts approve puppeteer`.
+npm 12 and later block dependency install scripts unless they are allow-listed. `package.json` has an `allowScripts` approval for puppeteer's postinstall (the browser download pa11y needs), pinned to the current version. After a puppeteer version bump, re-approve it with `npm install-scripts approve puppeteer`.
 
 If you use a Node version manager like `nvm` or `fnm`, we support automatic Node runtime switching with our `.nvmrc` file:
 
@@ -45,11 +45,11 @@ fnm use
 - `lint:css:fix`: the same check, applying Stylelint's automatic fixes
 - `lint:html`: checks HTML with Markuplint
 - `lint:html:fix`: the same check, applying Markuplint's automatic fixes
-- `lint:prose`: checks page copy and docs against the [house style](#house-style) (`config/check-prose.mjs`)
+- `lint:prose`: applies the [house style](#house-style) checks to page copy and docs (`config/check-prose.mjs`)
 - `test:a11y`: runs pa11y-ci accessibility tests
 - `prepare`: installs Husky hooks (run automatically after `npm ci`)
 
-Only `fix`, `format` and the two `:fix` scripts write to your files. Everything else reports and exits, which is what the pre-commit hook and CI need from a check.
+Only `fix`, `format` and the two `:fix` scripts write to your files. Everything else reports and exits, as the pre-commit hook and CI need from a check.
 
 Prettier and Markuplint disagree about where a closing tag goes. Prettier writes `</a\n>` and `markuplint --fix` pulls it back onto one line, so a Markuplint fix leaves formatting that `format:check` rejects. Prettier is the formatter of record here, because the pre-commit hook and CI both gate on `prettier --check`. So `npm run fix` runs the linters first and Prettier last. Use it instead of the individual `:fix` scripts and you cannot get that order wrong. If it stops on a linting error, fix the markup by hand and run it again.
 
@@ -57,7 +57,7 @@ Prettier and Markuplint disagree about where a closing tag goes. Prettier writes
 
 - Husky installs Git hooks (via the `npm run prepare` script)
 - The `.husky/pre-commit` hook runs `lint-staged` and then `pa11y-ci`
-- The `.husky/commit-msg` hook checks the commit message against the [house style](#house-style)
+- The `.husky/commit-msg` hook applies the [house style](#house-style) checks to the commit message
 - `lint-staged` runs the non-writing checks on staged `*.html` files:
   - Prettier (check, `config/prettier.config.json`)
   - Stylelint (with `postcss-html`, `config/stylelint.config.json`)
@@ -70,9 +70,9 @@ Prettier and Markuplint disagree about where a closing tag goes. Prettier writes
 
 The GitHub Actions workflow (`ci.yml`) sources its Node version from `.nvmrc` and runs three jobs in parallel, each surfacing as its own check:
 
-- **Format & Lint**: `npm ci`, then `format:check`, `lint:css`, `lint:html`, `lint:prose`, and a `yamllint` pass over `.github` using `config/yamllint.yml`
-- **Accessibility**: `npm ci`, then `test:a11y` (pa11y-ci)
-- **Security**: Gitleaks (secret scanning over history), Trivy (filesystem vuln/misconfig/secret scan), OSV-Scanner (dependency SCA on `package-lock.json`), `npm audit` (informational), and `dependency-review` (pull requests only)
+- Format & Lint: `npm ci`, then `format:check`, `lint:css`, `lint:html`, `lint:prose`, and a `yamllint` pass over `.github` using `config/yamllint.yml`
+- Accessibility: `npm ci`, then `test:a11y` (pa11y-ci)
+- Security: Gitleaks (secret scanning over history), Trivy (filesystem vuln/misconfig/secret scan), OSV-Scanner (dependency SCA on `package-lock.json`), `npm audit` (informational), and `dependency-review` (pull requests only)
 
 Dependency and GitHub Actions updates arrive as weekly Dependabot PRs (see `.github/dependabot.yml`). Merge them once CI is green. When CI is not green, or when several are open at once, work through [Dependency maintenance](#dependency-maintenance) below.
 
@@ -91,9 +91,9 @@ Dependabot opens PRs on the schedule in `.github/dependabot.yml`. Plenty of them
 
 ### Why a single Dependabot PR often cannot go green
 
-OSV-Scanner reads the whole of `package-lock.json`, not the diff. If `main` has advisories in four packages and a PR fixes one of them, the Security job still fails on the other three, and the PR sits there looking broken when it is not.
+OSV-Scanner reads the whole of `package-lock.json`, not the diff. If `main` has advisories in four packages and a PR fixes one of them, the Security job still fails on the other three. The PR sits there looking broken when it is not.
 
-Merging them one at a time does not help either. Each merge rewrites the lockfile, which makes every other open PR stale, so each one needs a rebase and another CI cycle, and `main` stays red the whole way through.
+Merging them one at a time does not help either. Each merge rewrites the lockfile and makes every other open PR stale. Every PR then needs a rebase and another CI cycle, and `main` stays red the whole way through.
 
 So: one open Dependabot PR, merge it. More than one, or a red Security job on `main`, do a single consolidated pass instead.
 
@@ -156,9 +156,9 @@ EOF
 
 Every line should be something you intended, something an intended bump pulled with it, or something a bump dropped. If the list runs to dozens of packages you did not expect, you probably want `git checkout main -- package-lock.json` and a more targeted second attempt.
 
-**7. Run CI locally** (see below), then commit, push, and open a PR.
+**7. Run CI locally (see below), then commit, push, and open a PR.**
 
-List the PRs you are superseding in the description. You do not need to close them: Dependabot closes its own PR once it sees the dependency on `main` at or above the version it wanted.
+List the PRs you are superseding in the description. You do not need to close them. Dependabot closes its own PR once it sees the dependency on `main` at or above the version it wanted.
 
 ### Running CI locally
 
@@ -183,7 +183,7 @@ npx puppeteer browsers install chrome
 
 For Security, `npm audit` covers the same ground as OSV-Scanner closely enough for dependency work. Gitleaks and Trivy almost never fire on a dependency change. `dependency-review` only runs on pull requests, because it needs a base to diff against.
 
-None of these commands writes to your files. That is the point of the split. CI has to fail on a violation, not repair it in a runner that is then thrown away. Run `npm run fix` when you want the fixes applied.
+None of these commands writes to your files. CI has to fail on a violation, not repair it in a runner that is then thrown away. Run `npm run fix` when you want the fixes applied.
 
 ### Major version bumps
 
@@ -225,7 +225,7 @@ The result is a lockfile that actually matches `package.json`, which is more tha
 
 First work out whether it is you.
 
-**Red before you touched it.** Check `main` and compare:
+If it was red before you touched it, check `main` and compare:
 
 ```bash
 gh run list --branch main --limit 5
@@ -233,16 +233,16 @@ gh run list --branch main --limit 5
 
 An older Dependabot PR branches from an older `main` and inherits whatever was broken then. Rebasing fixes it, and Dependabot will do that for you: comment `@dependabot rebase` on the PR.
 
-**Security red, everything else green.** Nearly always a tree-wide advisory rather than something the PR introduced. Read the OSV table in the log and consolidate as above.
+Security red with everything else green is nearly always a tree-wide advisory rather than something the PR introduced. Read the OSV table in the log and consolidate as above.
 
-**Cancelled with no steps.** Not your code. A job that never got a runner reports an empty runner name and no steps at all:
+A job canceled before any step ran is not your code. A job that never got a runner reports an empty runner name and zero steps:
 
 ```bash
 gh api repos/<owner>/<repo>/actions/runs/<run-id>/jobs \
   --jq '.jobs[] | {name, conclusion, runner: .runner_name, steps: (.steps | length)}'
 ```
 
-Check <https://www.githubstatus.com> before doing anything else. During an Actions incident, runs are slow to be created, sit queued, and get cancelled after about fifteen minutes without ever starting. Wait it out, then `gh run rerun <run-id>`.
+Check <https://www.githubstatus.com> before doing anything else. During an Actions incident, runs are slow to be created, sit queued, and get canceled after about fifteen minutes without ever starting. Wait it out, then `gh run rerun <run-id>`.
 
 **Anything else**, read the failure:
 
@@ -261,25 +261,16 @@ Comment these on a Dependabot PR:
 
 ### In the GitHub web UI
 
-- **The PR description** carries the upstream release notes and commit list. Read them before trusting a major.
-- **Merge button greyed out.** The merge box lists the required checks and whether the branch is behind `main`. A PR has to be up to date with `main` to merge. So after every merge, the next PR needs "Update branch" (or `gh pr update-branch <number>`) and a fresh green run.
-- **Security tab, Dependabot alerts.** Same advisories OSV-Scanner reports, with the dependency path that pulled each one in. Useful for working out which direct dependency to bump to shift a transitive one.
-- **Actions tab.** Re-run individual failed jobs without pushing an empty commit.
+- The PR description has the upstream release notes and commit list. Read them before trusting a major.
+- Merge button greyed out: the merge box lists the required checks and whether the branch is behind `main`. A PR has to be up to date with `main` to merge. So after every merge, the next PR needs "Update branch" (or `gh pr update-branch <number>`) and a fresh green run.
+- Security tab, Dependabot alerts: same advisories OSV-Scanner reports, with the dependency path that pulled each one in. Useful for working out which direct dependency to bump to shift a transitive one.
+- Actions tab: re-run individual failed jobs without pushing an empty commit.
 
-### Account and signing key
-
-The two sites use separate GitHub accounts and separate signing keys. `gh` acts as whichever account is active, so creating a PR against the other site fails with `must be a collaborator`:
-
-```bash
-gh auth status
-gh auth switch --user <account>
-```
+### Signing key
 
 Commits are signed. If one fails with `incorrect passphrase supplied to decrypt private key`, the signing key is not loaded in your SSH agent. Add it (`ssh-add <path-to-key>`) and commit again.
 
 ## Commit messages and pull requests
-
-### Commit subjects
 
 Write subjects as `type: short summary`:
 
@@ -293,7 +284,7 @@ ci: bump actions/checkout from 6.0.3 to 7.0.0
 - Types in use: `info` (site content and copy), `docs` (README, CONTRIBUTING, other docs), `deps` (dev dependencies and lockfile), `ci` (workflows and actions). Use `sec` for security hardening and security fixes. Dependabot is configured to use `deps` and `ci` (see `.github/dependabot.yml`), so keep those meanings stable. Add a new type sparingly when a change fits none of these (for example `fix` for site layout or behavior bugs).
 - Keep the summary imperative and concrete ("bump X", "split Y", "update Z"), lowercase the type, skip the trailing period, and stay under about 70 characters.
 - Label each PR from its type: `docs` gets `documentation`, `info` gets `information`, `deps` gets `dependencies` and `javascript`, `fix` gets `bug`, and `sec` gets `security`.
-- Name branches `type/short-slug` after the type the squashed commit will carry (for example `info/refactor-navbar`).
+- Name branches `type/short-slug` after the type of the squashed commit (for example `info/refactor-navbar`).
 - PRs are squash-merged, so the PR title becomes the commit subject on `main` (GitHub appends the `(#N)` reference). Write PR titles in the same `type: summary` form.
 
 ### Commit bodies
@@ -301,7 +292,7 @@ ci: bump actions/checkout from 6.0.3 to 7.0.0
 A subject alone is fine for a small self-explanatory change. When a body helps, spend it on why, not a replay of the diff:
 
 - Separate the subject from the body with a blank line.
-- Write each paragraph as one line rather than hard wrapping it. GitHub rewraps the body to the width of the reader's window, and a paragraph that was already broken at a fixed column comes out ragged there. `commit-msg` rejects a body that looks hard wrapped.
+- Write each paragraph as one line rather than hard wrapping it. GitHub rewraps the body to the width of the reader's window. A paragraph that was already broken at a fixed column comes out ragged there. `commit-msg` rejects a body that looks hard wrapped.
 - Bullet related changes with `-`, and write version bumps as `old -> new` (for example `prettier 3.8.3 -> 3.9.4`).
 - Name what a future reader will search for: advisory IDs (`GHSA-...`), PR numbers, config file paths.
 
@@ -309,21 +300,21 @@ A subject alone is fine for a small self-explanatory change. When a body helps, 
 
 Follow `.github/PULL_REQUEST_TEMPLATE.md` (What and why, Changes, Verification, Notes for reviewers). Keep it short and delete sections that do not apply.
 
-- **What and why** is a sentence or two of motivation. The diff already shows the what, so spend the words on the why.
-- **Verification** says what you actually ran or looked at: linters, `test:a11y`, which pages you opened in a browser and at what widths. CI running on the PR is a given, not a verification.
-- **Notes for reviewers** flags follow-ups, uncertainty, and anything expected to be red (for example a base-branch advisory) so nobody is surprised.
+- "What and why" is a sentence or two of motivation. The diff already shows the what, so spend the words on the why.
+- "Verification" says what you actually ran or looked at: linters, `test:a11y`, which pages you opened in a browser and at what widths. CI running on the PR doesn't count.
+- "Notes for reviewers" flags follow-ups, uncertainty, and anything expected to be red (for example a base-branch advisory) so nobody is surprised.
 
 When in doubt, keep it short and spend the words on why.
 
-Write the description before you open the PR rather than after. GitHub keeps a public revision history for every edited PR body, and there is no way to clear it short of deleting the repository, so an edit is permanent and visible. If a description needs a real rewrite, close the PR and open a new one.
+Write the description before you open the PR rather than after. GitHub keeps a public revision history for every edited PR body. Only deleting the repository clears it, so an edit is permanent and visible. If a description needs a real rewrite, replace the PR with a new one.
 
 ## House style
 
-Most of this comes down to being readable to somebody who is not already in the room with us. People reach the site on old phones, on slow connections, and with screen readers, and a fair number of them are deciding whether we are worth showing up for.
+Most of this comes down to being readable to somebody who is not already in the room with us. People reach the site on old phones, on slow connections, and with screen readers. A fair number of them are deciding whether we are worth showing up for.
 
-So: short sentences, and say who is doing the thing. Pick the plain word. When a term matters, reuse it instead of reaching for a synonym, because somebody skimming for the word they were told to look for ought to find that word.
+So: short sentences, and say who is doing the thing. Pick the plain word. When a term matters, reuse it instead of reaching for a synonym. Somebody skimming for the word they were told to look for ought to find that word.
 
-Keep the punctuation boring. Commas, colons and full stops carry nearly everything, and a plain hyphen covers a range. Skip the fancier dashes and the decorative characters. They are read aloud in ways you did not intend, they land badly when a line wraps on a narrow screen, and half our contributors have to go hunting for them on the keyboard anyway. Emoji have the same problems and date a page fast. In Markdown, one blank line between paragraphs.
+Keep the punctuation boring. Commas, colons, and full stops do nearly everything, and a plain hyphen covers a range. Skip the fancier dashes and the decorative characters. They are read aloud in ways you did not intend, and they land badly when a line wraps on a narrow screen. Half our contributors have to go hunting for them on the keyboard anyway. Emoji have the same problems and date a page fast. In Markdown, one blank line between paragraphs.
 
 `npm run lint:prose` checks the page copy and the docs, and `commit-msg` checks commit messages. Both go through `config/check-prose.mjs`. When one of them objects to a character, a comma or a full stop is almost always the fix.
 
@@ -331,11 +322,9 @@ A commit message describes the change, not how it came to be written. Keep `Co-a
 
 ## Repository layout notes
 
-The four linter configs live in `config/` so the root stays uncluttered. Each tool is pointed at its file with an explicit `--config` flag in the npm scripts. `.nvmrc` stays at the root because `nvm use` / `fnm use` only read it from the current directory, and `package.json` / `package-lock.json` stay at the root so `npm ci` and `npm run` work without a `--prefix`. `cspell.json` also stays at the root. The spell checker searches upward from the file it checks, so a copy under `config/` would cover only `config/`.
+The four linter configs live in `config/` so the root stays uncluttered. Each tool is pointed at its file with an explicit `--config` flag in the npm scripts. `.nvmrc` stays at the root because `nvm use` / `fnm use` only read it from the current directory. `package.json` / `package-lock.json` stay at the root so `npm ci` and `npm run` work without a `--prefix`. `cspell.json` also stays at the root. The spell checker searches upward from the file it checks, so a copy under `config/` would cover only `config/`.
 
 ## Conventions
-
-### Image files
 
 All images are contained within the `images` folder and must be invoked in `index.html` with alt text. Images of book covers for the Bookclub section of the website are specifically stored in the subfolder `images/books`.
 

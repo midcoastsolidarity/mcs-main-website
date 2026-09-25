@@ -4,7 +4,7 @@ This repo contains a simple website for the Maine-based Midcoast Solidarity orga
 
 ## Viewing the site
 
-No build step, no server required. Open `index.html` in any browser and you are looking at the live site.
+Open `index.html` in any browser and you are looking at the live site.
 
 If you want live reloading while editing, serve the folder with any static HTTP server:
 
@@ -55,7 +55,7 @@ mcs-main-website
 
 ## Contributing
 
-Edits to the site, the tooling, or the docs are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for the development setup, the npm scripts, the pre-commit hooks, the CI checks, and the image and CSS conventions.
+Edits to the site, the tooling, or the docs are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for the development setup, the npm scripts, the pre-commit hooks, the CI checks, and the conventions for images and CSS.
 
 ## License
 
