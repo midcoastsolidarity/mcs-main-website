@@ -1,0 +1,199 @@
+* {
+  box-sizing: border-box;
+}
+
+/* 22vh keeps anchored sections clear of the sticky header on scroll. */
+html {
+  scroll-padding-top: 22vh;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+}
+
+/* Per-tag font sizes. */
+h1 {
+  font-size: 2.5em;
+}
+
+h2 {
+  font-size: 2.25em;
+}
+
+h3 {
+  font-size: 2em;
+  text-decoration: underline;
+}
+
+h4 {
+  font-size: 1.75em;
+}
+
+p {
+  font-size: 1.5em;
+}
+
+/* Sticky so the header stays put on scroll; box-shadow separates it from content. */
+header {
+  padding: 0 10px;
+  text-align: left;
+  background: white;
+  color: black;
+  display: flex;
+  flex-flow: row wrap;
+  place-content: stretch space-around;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  box-shadow: 5px 5px 9px 1px rgb(0 0 0 / 52%);
+  min-height: 20vh;
+  max-height: 34vh;
+}
+
+.heading {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 300%;
+  max-height: 200px;
+  text-align: center;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-around;
+}
+
+/* Block so the link fills the button: text-align centers the label and
+   the hover highlight covers the whole button. */
+
+.navbar a {
+  display: block;
+  color: black;
+  padding: 0.5em 0.75em;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 0.4em;
+}
+
+/* Invert colors on hover for a clear affordance. */
+.navbar a:hover {
+  background-color: #014f3f;
+  color: white;
+}
+
+/* No fixed height or max-width: each button sizes to its label, and the
+   clamp scales the type with the viewport so labels never overflow. */
+
+.navbar-button {
+  background-color: lightgrey;
+  border-radius: 0.4em;
+  margin: 2px;
+  font-size: clamp(1.25em, 2.2vw, 2em);
+}
+
+.landing {
+  padding: 2em;
+  margin: 2em;
+  background: #014f3f;
+  color: white;
+  display: flex;
+  align-items: center;
+  box-shadow: 10px 10px 14px 1px rgb(0 0 0 / 52%);
+}
+
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 50%;
+  padding: 1em;
+}
+
+/* 10vw side margins keep a readable measure on wide screens. */
+.main {
+  padding: calc(25px + 2vw) 2vw;
+  margin-inline: 10vw;
+  width: auto;
+  height: 80%;
+  background-color: white;
+}
+
+/* Centers block images. Throughout the page, images carry inline
+   max-width/max-height in vw so they scale with the viewport and never
+   overflow their column. */
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.bookshelf {
+  display: inline-flex;
+}
+
+.box {
+  height: 28em;
+  width: 15em;
+  background-color: whitesmoke;
+  border-radius: 1em;
+  padding: 0.5em;
+  display: inline-grid;
+  box-shadow: 0.6em 0.6em 0.6em 0.6em rgb(0 0 0 / 52%);
+}
+
+.cover {
+  max-height: 15em;
+  max-width: 10em;
+  margin: auto;
+}
+
+.title {
+  font-weight: bold;
+  font-family: Optima, Arial, Helvetica, sans-serif;
+  font-style: italic;
+  font-size: 1em;
+}
+
+.author {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  text-align: left;
+  font-size: 1em;
+}
+
+footer {
+  padding: 10px 40px;
+  background: #014f3f;
+  color: white;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* Phone overrides: stack to a single full-width column and shrink type. */
+@media only screen and (width <= 620px) {
+  header,
+  .landing,
+  .navbar,
+  .row {
+    width: 100%;
+    margin: 0;
+    padding: 1px;
+  }
+
+  .navbar a {
+    padding: 0.3em 0.4em;
+  }
+
+  body {
+    font-size: small;
+  }
+
+  .main {
+    width: 100%;
+    margin: 0;
+    padding: 5px;
+  }
+}

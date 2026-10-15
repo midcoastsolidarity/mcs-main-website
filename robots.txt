@@ -1,0 +1,42 @@
+# Preferences for AI use of this site, in the syntax of the IETF AI Preferences drafts.
+# draft-ietf-aipref-vocab-08 defines the categories train-ai and ai-use.
+# draft-ietf-aipref-attach-05 defines the Content-Usage rule.
+# Ordinary search crawlers stay allowed. The AI crawlers named below are disallowed.
+
+User-agent: *
+Allow: /
+Content-Usage: train-ai=n, ai-use=n
+
+# OpenAI
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+# Anthropic (Claude-Web and anthropic-ai are older names)
+User-agent: ClaudeBot
+User-agent: Claude-User
+User-agent: Claude-SearchBot
+User-agent: Claude-Web
+User-agent: anthropic-ai
+# Google (a robots.txt token only, it does not affect Google Search)
+User-agent: Google-Extended
+# Apple (does not crawl, it controls training use of Applebot's data)
+User-agent: Applebot-Extended
+# Common Crawl
+User-agent: CCBot
+# Perplexity
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+# ByteDance
+User-agent: Bytespider
+# Meta
+User-agent: Meta-ExternalAgent
+User-agent: Meta-ExternalFetcher
+User-agent: meta-webindexer
+# Amazon
+User-agent: Amazonbot
+User-agent: Amzn-SearchBot
+User-agent: Amzn-User
+# Cohere
+User-agent: cohere-ai
+User-agent: Coherebot
+Disallow: /

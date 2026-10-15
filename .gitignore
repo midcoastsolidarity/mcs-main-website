@@ -1,0 +1,24 @@
+# Editor, OS, and environment artifacts
+# Listed individually rather than as a blanket `.*`. That glob also matches
+# .github/ and .husky/, and git does not descend into an ignored directory, so
+# new files underneath them are invisible to `git add`. Husky's generated
+# .husky/_/ carries its own .gitignore and needs no rule here.
+.DS_Store
+Thumbs.db
+.env
+.env.*
+.cache/
+.direnv/
+
+# VSCode
+# Ignore the whole directory. Git does not descend into an ignored directory,
+# so nothing inside can be re-included without un-ignoring the directory first.
+.vscode/
+*.code-workspace
+
+# Built Visual Studio Code Extensions
+*.vsix
+
+# Node Modules
+node_modules
+node_modules/*

@@ -1,0 +1,1 @@
+node config/check-prose.mjs --commit-msg "$1"

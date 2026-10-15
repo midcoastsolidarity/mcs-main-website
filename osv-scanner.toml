@@ -1,0 +1,7 @@
+# OSV-Scanner exceptions. Each entry names one advisory, why it is accepted,
+# and the date the exception lapses so the scan fails again for a re-check.
+
+[[IgnoredVulns]]
+id = "GHSA-vfj7-8cjw-p6xm"
+ignoreUntil = 2027-01-08T00:00:00Z
+reason = "braces has no fixed release yet. It is a dev-only dependency of stylelint and markuplint, which match this repo's own file globs at lint time, so no outside input reaches it. Remove this entry once a fixed braces ships."

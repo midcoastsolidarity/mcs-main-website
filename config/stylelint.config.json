@@ -1,0 +1,19 @@
+{
+  "extends": ["stylelint-config-standard"],
+  "overrides": [
+    {
+      "files": ["**/*.html"],
+      "customSyntax": "postcss-html"
+    }
+  ],
+  "rules": {
+    "color-hex-length": "short",
+    "block-no-empty": true,
+    "rule-empty-line-before": [
+      "always",
+      {
+        "except": ["first-nested", "after-single-line-comment"]
+      }
+    ]
+  }
+}
